@@ -57,7 +57,7 @@ Para usuario coloque:
 
 Cpf = 99745928000162
 <br>
-Senha = e10adc3949ba59abbe56e057f20f883e
+Senha = 123456
   
 Senha do cliente na central do assinante em MD5
 
