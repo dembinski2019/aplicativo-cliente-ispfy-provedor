@@ -1,5 +1,5 @@
 # Cliente-ispfy
-Aplicativo integrado com a api do sistema ISPFY para Provedores de internet
+Aplicativo Multi-plataforma integrado com a api do sistema ISPFY para Provedores de internet.
 
 Aplicativo escrito em python3.6 utilizando a biblioteca kivy e kivymd.
 <br>
@@ -59,6 +59,10 @@ Cpf = 99745928000162
 <br>
 Senha = 123456
   
-Senha do cliente na central do assinante em MD5
+Podendo ser copilado para Android, Ios, Windows e MacOs.
+Ele está pronto para ser copilado para Android com o buildozer.Basta ter um maquina rodando Linux. Instalar o Buildozer e rodar o comando:
 
-E pronto.
+buildozer -v android debug deploy 
+
+lembre-se de estar com o celular conectado via usb e modo de desenvolvedor ativado.
+Você poderá roda-lo em um emulador android.
