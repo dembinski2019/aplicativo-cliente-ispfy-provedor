@@ -1,0 +1,253 @@
+
+<ContentNavigationDrawer>:
+    padding: "20dp"
+    spacing: "18dp"
+    orientation: 'vertical'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        adaptive_height: True
+        spacing: "8dp"
+        AnchorLayout:
+            anchor_x: "left"
+            size_hint_y: None
+            height: avatar.height
+
+            Image:
+                id: avatar
+                size_hint: None, None
+                size: "270dp", "240dp"
+                source: "presplash.png"
+        MDSeparator:
+            height: "1dp"
+
+        MDLabel:
+            id: nav_name_client
+            text: "Fulano"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        MDLabel:
+            text: ""
+            id: nav_id_numero
+            size_hint_y: None
+            height: self.texture_size[1]
+        MDLabel:
+            text: ""
+            id: nav_end_cliente
+            size_hint_y: None
+            height: self.texture_size[1]
+    Widget:
+
+    MDLabel:
+        text: "© Todos os Direitos Reservados\nEverton Dembinski" 
+        font_size: '12sp' 
+        halign: "center"
+        theme_text_color:'Hint'
+
+
+<AutorizationScreen>:
+    BoxLayout:
+        orientation:'vertical'
+        Image:
+            source: 'media/logo.png'
+            size: self.texture_size
+        BoxLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_y": .5}
+            orientation:'vertical'
+            spacing: '20dp'
+            padding: '20dp'
+            MDLabel:
+                text: ''
+                id: error_login
+                halign: "center"
+                theme_text_color: "Error"
+            MDLabel:
+                text: 'Login'
+                halign: "center"
+                theme_text_color: "Primary"
+            MDTextField:
+                id: user
+                hint_text: "Digite seu CPF"
+                pos_hint: {"center_y": .5}
+                padding: '5dp'
+            MDTextField:
+                id: password
+                hint_text: "Sua Senha"
+                pos_hint: {"center_y": .5}
+                padding: '5dp'
+            MDFlatButton:
+                text: "Entrar"
+                md_bg_color: 0.1, 0.5, 1, 1
+                pos_hint: {"center_x": .5}
+                on_release: root.login()
+
+        BoxLayout:        
+            padding: '20dp'
+            MDLabel:
+                text: 'Primeira vez aqui? Clique [ref=http://172.17.0.2]AQUI[/ref]'
+                markup: True
+                halign: "center"
+                theme_text_color: "Primary"
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open(args[1])
+
+
+<LinesBoleto>:
+    id: content
+    spacing: '5dp'
+    MDTextField:
+        id: cod_boleto
+    MDRaisedButton:
+        text: 'Copiar'
+        on_release:root.copiar()
+
+
+<ClientScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Maisnet'
+            md_bg_color: .2, .2, .2, 1
+            specific_text_color: 1, 1, 1, 1
+            right_action_items: [['exit-to-app',lambda x: root.good_bay()]]
+            elevation: 1
+            left_action_items: [['menu', lambda x: (nav_drawer.set_state("open"),CND.on_enter())]]
+        MDBoxLayout:
+            orientation: 'vertical'
+            Widget:
+                size_hint_y:None
+                height: '10dp'
+            MDBoxLayout:
+                adaptive_height: True
+                padding: dp(20)
+                MDLabel:
+                    size_hint_x:.3
+                    text: 'Olá,'
+                    font_style: "H4" 
+                MDLabel:
+                    font_style: "H4" 
+                    id: client_name
+                    text: "Fulano"
+            Widget:
+                size_hint_y:None
+                height: '20dp'
+            ScrollView:
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    adaptive_height: True
+                    spacing: '25dp'
+                    padding: '20dp'
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "8dp"
+                        spacing: '20dp'
+                        size_hint_y: None
+                        height: '200dp'
+                        BoxLayout:
+                            MDLabel:
+                                text: 'Débitos'
+                                font_style: "H6" 
+                                font_size: '22sp'
+                                theme_text_color: "Primary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                            MDIconButton:
+                                icon: "printer"
+                                user_font_size: "40sp"
+                                size_hint_x: None
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                                on_release: root.print_boleto_aberto()
+                        MDSeparator:
+                            height: "1dp"
+                        BoxLayout:
+                            BoxLayout:
+                                orientation: 'vertical'
+                                MDLabel:
+                                    text: "Boleto em Aberto"
+                                    id: boleto_em_aberto
+                                    theme_text_color: "Primary"
+                                MDLabel:
+                                    id: valor_boleto_aberto
+                                    text: "R$ 00,00"
+                                    theme_text_color: "Primary"
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "8dp"
+                        spacing: '20dp'
+                        size_hint_y: None
+                        height: '200dp'
+                        BoxLayout:
+                            MDLabel:
+                                text: 'Próximo Vencimento'
+                                font_style: "H6" 
+                                font_size: '22sp'
+                                theme_text_color: "Primary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                            MDIconButton:
+                                icon: "printer"
+                                user_font_size: "40sp"
+                                size_hint_x: None
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                                on_release: root.print_next_boleto()
+                        MDSeparator:
+                            height: "1dp"
+                        BoxLayout:
+                            BoxLayout:
+                                orientation: 'vertical'
+                                MDLabel:
+                                    text: "Boleto em Aberto"
+                                    id: next_cobrança
+                                    theme_text_color: "Primary"
+                                MDLabel:
+                                    id: next_cobrança_valor
+                                    text: "R$ 00,00"
+                                    theme_text_color: "Primary"
+                    MDCard:
+                        orientation: "vertical"
+                        spacing: '20dp'
+                        padding: "8dp"
+                        size_hint_y: None
+                        height: '200dp'
+                        BoxLayout:
+                            MDLabel:
+                                text: "Suporte"
+                                font_style: "H6" 
+                                font_size: '22sp'
+                                size_hint_y: None
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                                height: self.texture_size[1]
+                            MDIconButton:
+                                icon: "cellphone"
+                                user_font_size: "40sp"
+                                pos_hint: {'center_x':.5,'center_y':.5}
+                        MDSeparator:
+                            height: "1dp"
+                        BoxLayout:
+                            MDLabel:
+                                text: "Abrir Ordem de Serviço (em teste)"
+                                theme_text_color: "Primary"
+    MDNavigationDrawer:                
+        id: nav_drawer
+        ContentNavigationDrawer:
+            id: CND
+
+
+MainScreen:
+    name: "main_screen"
+        
+    NavigationLayout:
+        Manager:
+            id: manager
+            AutorizationScreen:
+                name: 'autorization_screen'
+
+            ClientScreen:
+                name:'client_screen'
+                

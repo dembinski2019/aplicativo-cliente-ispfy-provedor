@@ -1,0 +1,11 @@
+.buildozer
+__pycache__
+*.pyc
+.vscode
+bin
+venv
+boleto.html
+boleto.pdf
+my_log.txt
+testebanco.pyc
+
