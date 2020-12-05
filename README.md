@@ -55,9 +55,10 @@ Para fazer login dera utilizar os dados fornecidos na documentação do Ispfy
 
 Para usuario coloque:
 
-  user = 99745928000162
-  senha = e10adc3949ba59abbe56e057f20f883e
+Cpf = 99745928000162
+<br>
+Senha = e10adc3949ba59abbe56e057f20f883e
   
 Senha do cliente na central do assinante em MD5
 
-
+E pronto.
